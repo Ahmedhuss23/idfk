@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peony Garden</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap">
+    <style>
+        body {
+            background-color: #ffccd2; /* slightly darker pink background */
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        #garden {
+            position: relative;
+            height: 100vh;
+        }
+
+        .peony {
+            position: absolute;
+            bottom: 10px; /* Adjusted to make them appear lower */
+            left: 50%; /* Centered horizontally */
+            transform: translateX(-50%); /* Centered horizontally */
+            transition: all 2s ease-out;
+            padding: 10px;
+            color: white;
+            height: 150px; /* Set the same height for all peonies */
+        }
+
+        .peony img {
+            width: 150px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 50%;
+            max-height: 100%; /* Ensure the image fits within the peony height */
+        }
+
+        #moreButton {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #800080; /* darker purple */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Quicksand', sans-serif;
+            transition: background-color 0.3s ease;
+            display: none; /* Initially hidden */
+        }
+
+        #moreButton:hover {
+            background-color: #4b004d; /* slightly darker hover color */
+        }
+
+        #textPopup {
+            position: fixed;
+            top: 20%; /* adjusted top position */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 30px; /* increased font size */
+            font-weight: bold; /* added font weight */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="garden">
+        <!-- Initial peony -->
+        <div class="peony" id="initialPeony">
+            <img src="C:\Users\M.Samir\Desktop\luv\New folder\giphy.gif" alt="Peony Animation">
+        </div>
+
+        <!-- Additional peonies will be added dynamically -->
+
+        <div id="textPopup">i love you samsooma</div>
+    </div>
+
+    <button id="moreButton" onclick="growMorePeonies()">Moreeee</button>
+
+    <script>
+        // Initial peony growth
+        setTimeout(function() {
+            document.getElementById('initialPeony').style.bottom = '100px';
+            document.getElementById('moreButton').style.display = 'block';
+        }, 1000);
+
+        // Function to grow more peonies
+        function growMorePeonies() {
+            // Add 10 more peonies dynamically
+            for (let i = 1; i <= 10; i++) {
+                const newPeony = document.createElement('div');
+                newPeony.className = 'peony';
+                newPeony.style.left = Math.random() * 90 + 'vw';
+                newPeony.innerHTML = '<img src="C:\\Users\\M.Samir\\Desktop\\luv\\New folder\\giphy.gif" alt="New Peony">';
+                document.getElementById('garden').appendChild(newPeony);
+
+                // Triggering the transition
+                setTimeout(function() {
+                    newPeony.style.bottom = Math.random() * 50 + 'px';
+                }, 100);
+            }
+
+            // Display the text popup after all peonies have grown
+            setTimeout(function() {
+                document.getElementById('textPopup').style.display = 'block';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
